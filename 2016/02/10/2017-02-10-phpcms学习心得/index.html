@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>phpcms学习心得 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于这段时间phpcms学习的心得接手项目，前后端并未做到分离。慢慢看这php源码，了解其中的运行原理。心有体会所写。 首先phpcms 意思应该是php content mannager system  （php内容管理系统）是一套成熟的内容管理系统，包括成熟的管理员后台，由于数据录入和面向用户的接口。管理员后台，是php与mysql链接管理整个系统的任何数据的模块，包括前后端。面向用户接口，则">
+<meta name="keywords" content="phpcms 学习 新的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phpcms学习心得">
+<meta property="og:url" content="http://yoursite.com/2016/02/10/2017-02-10-phpcms学习心得/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于这段时间phpcms学习的心得接手项目，前后端并未做到分离。慢慢看这php源码，了解其中的运行原理。心有体会所写。 首先phpcms 意思应该是php content mannager system  （php内容管理系统）是一套成熟的内容管理系统，包括成熟的管理员后台，由于数据录入和面向用户的接口。管理员后台，是php与mysql链接管理整个系统的任何数据的模块，包括前后端。面向用户接口，则">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-10T14:53:29.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="phpcms学习心得">
+<meta name="twitter:description" content="关于这段时间phpcms学习的心得接手项目，前后端并未做到分离。慢慢看这php源码，了解其中的运行原理。心有体会所写。 首先phpcms 意思应该是php content mannager system  （php内容管理系统）是一套成熟的内容管理系统，包括成熟的管理员后台，由于数据录入和面向用户的接口。管理员后台，是php与mysql链接管理整个系统的任何数据的模块，包括前后端。面向用户接口，则">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-02-10-phpcms学习心得" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/10/2017-02-10-phpcms学习心得/" class="article-date">
+  <time datetime="2016-02-09T16:00:00.000Z" itemprop="datePublished">2016-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/phpcms/">phpcms</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      phpcms学习心得
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于这段时间phpcms学习的心得"><a href="#关于这段时间phpcms学习的心得" class="headerlink" title="关于这段时间phpcms学习的心得"></a>关于这段时间phpcms学习的心得</h2><p>接手项目，前后端并未做到分离。慢慢看这php源码，了解其中的运行原理。<br>心有体会所写。</p>
+<p>首先phpcms 意思应该是php content mannager system  （php内容管理系统）<br>是一套成熟的内容管理系统，包括成熟的管理员后台，由于数据录入和面向用户的接口。<br>管理员后台，是php与mysql链接管理整个系统的任何数据的模块，包括前后端。<br>面向用户接口，则是建站开发之后向用户展示的浏览器页面，也包括前后端。</p>
+<p>下面就phpcms讲解一下心得。</p>
+<a id="more"></a>
+
+<p>这是phpcms文件目录结构</p>
+<pre><code>xxx/
+
+    |  –  api  接口文件目录
+
+    |  –  caches 缓存文件目录
+
+           |  – configs 系统配置文件目录
+
+           |  – caches_* 系统缓存目录
+
+    |  –  phpcms  phpcms框架主目录
+
+           |  – languages 框架语言包目录
+
+           |  – libs 框架主类库、主函数库目录
+
+           |  – model 框架数据库模型目录
+
+           |  – modules 框架模块目录
+
+           |  – templates 框架系统模板目录
+
+    |  –  phpsso_server  phpsso主目录
+
+    |  –  statics  系统附件包
+
+           |  – css 系统css包
+
+           |  – images 系统图片包
+
+           |  – js 系统js包
+
+    |  –  uploadfile  网站附件目录
+
+    |  –  admin.php  后台管理入口
+
+    |  –  index.php  程序主入口
+
+    |  –  crossdomain.xml  FLASH跨域传输文件
+
+    |  –  robots.txt 搜索引擎蜘蛛限制配置文件
+
+    |  –  favicon.ico  系统icon图标</code></pre><p>初期开发其实主要是静态页面以及静态资源和后端php模块开发，可能会包含到数据库操作。</p>
+<p>一般是phpcms/modules/目录下的content模块下进行后端接口开发，用于编译生成页面<br>    数据库访问模块可至于phpcms/model目录下的一个model类。</p>
+<p>phpcms/teplates目录下放置静态html文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">statics/css</span><br><span class="line">statics/js</span><br><span class="line">statics/images</span><br><span class="line">这三个目录用于存放站点静态资源。</span><br><span class="line"></span><br><span class="line">xxx/src/.htaccess 用于url重定向   比如?m=content&amp;c=index&amp;a=init  重定向到 /content/index/init 或者/xxx/ 任何符合规范的字符串</span><br><span class="line"></span><br><span class="line">xxx/src/phpcms/base.php 用于加载很多配置项，已经定义http 信息头的配置项</span><br><span class="line"></span><br><span class="line">define(<span class="string">'CHARSET'</span> ,pc_base::load_config(<span class="string">'system'</span>,<span class="string">'charset'</span>));</span><br><span class="line"><span class="comment">//输出页面字符集</span></span><br><span class="line">header(<span class="string">'Content-type: text/html; charset='</span>.CHARSET);</span><br><span class="line"><span class="comment">// 指定允许其他域名访问</span></span><br><span class="line">header(<span class="string">'Access-Control-Allow-Origin:*'</span>);</span><br><span class="line"><span class="comment">// 响应类型</span></span><br><span class="line">header(<span class="string">'Access-Control-Allow-Methods:POST'</span>);</span><br><span class="line"><span class="comment">// 响应头设置</span></span><br><span class="line">header(<span class="string">'Access-Control-Allow-Headers:x-requested-with,content-type'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xxx/src/caches/configs/system.php 用于配置很多预定义全局参数</span><br><span class="line">xxx/src/caches/configs/database.php 用于配置数据库连接信息</span><br><span class="line">xxx/src/caches/configs/route.php 用于配置默认路由</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xxx/src/caches/caches_teplate/xxx/content/xxx.php html编译后生成的php字符串，用于最终输出页面</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实phpcms最简单的地方就是，参数定义：<br>每个函数，尤其是include template()  这个时候对静态html进行了编译，替换php预定义的一些参数，<br>调用template的地方，定义的局部变量也会在html中使用的php变量用得到。</p>
+<p>接下来的重点其实是php基础/网络安全知识/数据库知识</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/10/2017-02-10-phpcms学习心得/" data-id="ck1kthfu2000909nzoqqq5ehh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/28/2016-11-28-nodejs-use/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nodejs初探-1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/10/2017-02-10-前端学习心得/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前端学习心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS-AS/">JS AS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/TensorFlow基础/">TensorFlow基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/androidstudio/">androidstudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/avalonjs/">avalonjs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cef/">cef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/phpcms/">phpcms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/windows/">windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/即时通讯/">即时通讯</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/样式/">样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/流媒体-c-Android-IOS/">流媒体 c++ Android IOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/线程注入/">线程注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-QT  QWebView 模拟html button点击/">QT  QWebView 模拟html button点击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord train/">TensorFlow基础 tensorbaord train</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/">开源流媒体平台框架 EasyDarwin</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-正则表达式 url/">正则表达式 url</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-创建桌面快捷方式/">创建桌面快捷方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

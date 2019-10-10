@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>TensorFlow基础 tensorbaord graph | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TensorFlow基础 tensorbaord graphpython: 3.x">
+<meta name="keywords" content="TensorFlow基础 tensorbaord graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow基础 tensorbaord graph">
+<meta property="og:url" content="http://yoursite.com/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="TensorFlow基础 tensorbaord graphpython: 3.x">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/03/13/images/loss.png">
+<meta property="og:updated_time" content="2019-10-10T14:55:47.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow基础 tensorbaord graph">
+<meta name="twitter:description" content="TensorFlow基础 tensorbaord graphpython: 3.x">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/13/images/loss.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-03-13-TensorFlow基础 tensorbaord graph" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/" class="article-date">
+  <time datetime="2018-03-12T16:00:00.000Z" itemprop="datePublished">2018-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/TensorFlow基础/">TensorFlow基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TensorFlow基础 tensorbaord graph
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TensorFlow基础-tensorbaord-graph"><a href="#TensorFlow基础-tensorbaord-graph" class="headerlink" title="TensorFlow基础 tensorbaord graph"></a>TensorFlow基础 tensorbaord graph</h2><p>python: 3.x</p>
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs, in_size, out_size, activation_function=None)</span>:</span></span><br><span class="line">	<span class="keyword">with</span> tf.name_scope(<span class="string">'layer'</span>):</span><br><span class="line">		<span class="keyword">with</span> tf.name_scope(<span class="string">'weights'</span>):</span><br><span class="line">			Weights = tf.Variable(tf.random_normal([in_size, out_size]))</span><br><span class="line">			Weights = tf.cast(Weights, tf.float64)</span><br><span class="line">		<span class="keyword">with</span> tf.name_scope(<span class="string">'biases'</span>):</span><br><span class="line">			biases = tf.Variable(tf.zeros([<span class="number">1</span>, out_size]) + <span class="number">0.1</span>)</span><br><span class="line">			biases = tf.cast(biases, tf.float64)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">with</span> tf.name_scope(<span class="string">'Wx_plus_b'</span>):</span><br><span class="line">			Wx_plus_b = tf.matmul(inputs, Weights) + biases</span><br><span class="line">		<span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			outputs = Wx_plus_b</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			outputs = activation_function(Wx_plus_b)</span><br><span class="line">		<span class="keyword">return</span> outputs</span><br><span class="line"></span><br><span class="line">x_data = np.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">300</span>)[:, np.newaxis]</span><br><span class="line">noise = np.random.normal(<span class="number">0</span>, <span class="number">0.05</span>, x_data.shape)</span><br><span class="line">y_data = np.square(x_data) - <span class="number">0.5</span> + noise</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'inputs'</span>):</span><br><span class="line">	xs = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>], name=<span class="string">'x_input'</span>)</span><br><span class="line">	ys = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>], name=<span class="string">'y_input'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">l1 = add_layer(x_data, <span class="number">1</span>, <span class="number">10</span>, activation_function=tf.nn.relu)</span><br><span class="line"></span><br><span class="line">prediction = add_layer(l1, <span class="number">10</span>, <span class="number">1</span>, activation_function=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'loss'</span>):</span><br><span class="line">	loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'train'</span>):</span><br><span class="line">	train_step = tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	init = tf.global_variables_initializer()</span><br><span class="line">	writer = tf.summary.FileWriter(<span class="string">"logs"</span>, sess.graph)</span><br><span class="line">	sess.run(init)</span><br><span class="line"></span><br><span class="line"><span class="comment">#	fig = plt.figure()</span></span><br><span class="line"><span class="comment">#	ax = fig.add_subplot(1, 1, 1)</span></span><br><span class="line"><span class="comment">#	ax.scatter(x_data, y_data)</span></span><br><span class="line"><span class="comment">#	plt.ion()</span></span><br><span class="line"><span class="comment">#	plt.show()</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">		sess.run(train_step, feed_dict=&#123;xs: x_data, ys: y_data&#125;)</span><br><span class="line">		<span class="comment">#if i % 10:</span></span><br><span class="line">		<span class="comment">#	#print(sess.run(loss, feed_dict=&#123;xs: x_data, ys: y_data&#125;))</span></span><br><span class="line">		<span class="comment">#	try:</span></span><br><span class="line">		<span class="comment">#		ax.lines.remove(lines[0])</span></span><br><span class="line">		<span class="comment">#	except Exception as e:</span></span><br><span class="line">		<span class="comment">#		pass</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">		<span class="comment">#	prediction_value = sess.run(prediction, feed_dict=&#123;xs: x_data&#125;)</span></span><br><span class="line">		<span class="comment">#	lines = ax.plot(x_data, prediction_value, 'r-', lw=3)</span></span><br><span class="line">		<span class="comment">#	plt.pause(0.1)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../images/loss.png" alt="损失图像" title="损失图像"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/" data-id="ck1kthfuu001d09nzq915xujr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/13/2018-03-13-Windows程序兼容助手/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          windows程序兼容助手
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/13/2018-03-13-TensorFlow基础 placeholder/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TensorFlow基础 placeholder</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS-AS/">JS AS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/TensorFlow基础/">TensorFlow基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/androidstudio/">androidstudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/avalonjs/">avalonjs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cef/">cef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/phpcms/">phpcms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/windows/">windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/即时通讯/">即时通讯</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/样式/">样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/流媒体-c-Android-IOS/">流媒体 c++ Android IOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/线程注入/">线程注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-QT  QWebView 模拟html button点击/">QT  QWebView 模拟html button点击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord train/">TensorFlow基础 tensorbaord train</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/">开源流媒体平台框架 EasyDarwin</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-正则表达式 url/">正则表达式 url</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/2018-03-13-创建桌面快捷方式/">创建桌面快捷方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
