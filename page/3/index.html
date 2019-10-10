@@ -479,7 +479,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2017/06/25/2017-06-25-Python 动态网页图片爬取/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2017/06/25/2017-06-25-Python 模拟登陆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -498,7 +498,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/25/2017-06-25-Python 动态网页图片爬取/" itemprop="url">Python 动态网页图片爬取</a></h1>
+                <a class="post-title-link" href="/2017/06/25/2017-06-25-Python 模拟登陆/" itemprop="url">Python模拟登陆</a></h1>
         
 
         <div class="post-meta">
@@ -602,13 +602,17 @@
 
       
         
-          <h2 id="Python-动态网页图片爬取"><a href="#Python-动态网页图片爬取" class="headerlink" title="Python 动态网页图片爬取"></a>Python 动态网页图片爬取</h2><p>环境准备<br>anaconda 4.2.9<br>PyCharm 2017.1.4<br>pip install selenium</p>
-<h3 id="1-图片存储地址"><a href="#1-图片存储地址" class="headerlink" title="1.图片存储地址"></a>1.图片存储地址</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index = <span class="number">1</span></span><br><span class="line">imgPath = <span class="string">r"D:\img\baidu"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(imgPath):</span><br><span class="line">    os.mkdir(imgPath)</span><br></pre></td></tr></table></figure>
+          <h2 id="Python模拟登陆"><a href="#Python模拟登陆" class="headerlink" title="Python模拟登陆"></a>Python模拟登陆</h2><p>anaconda 4.2.9<br>PyCharm 2017.1.4<br>Chrome 57</p>
+<p>环境准备<br>chromedriver 2.28<br>（此处的驱动需要根据Chrome的版本安装对应的Chromedriver版本）<br>（可以不写入系统path  再driver初始化时指定路径即可）<br>pip install selenium</p>
+<h3 id="1-导入包"><a href="#1-导入包" class="headerlink" title="1.导入包"></a>1.导入包</h3><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-初始化driver环境"><a href="#2-初始化driver环境" class="headerlink" title="2.初始化driver环境"></a>2.初始化driver环境</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chromedriver = <span class="string">"G:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe"</span></span><br><span class="line">os.environ[<span class="string">"webdriver.chrome.driver"</span>] = chromedriver</span><br><span class="line">driver = webdriver.Chrome(chromedriver)</span><br></pre></td></tr></table></figure>
+<h3 id="2-初始化ChromeOptions-用于取消Chrome提示错误"><a href="#2-初始化ChromeOptions-用于取消Chrome提示错误" class="headerlink" title="2.初始化ChromeOptions 用于取消Chrome提示错误"></a>2.初始化ChromeOptions 用于取消Chrome提示错误</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options = webdriver.ChromeOptions()</span><br><span class="line">options.add_experimental_option(<span class="string">"excludeSwitches"</span>, [<span class="string">"ignore-certificate-errors"</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-初始化Chromedriver"><a href="#3-初始化Chromedriver" class="headerlink" title="3.初始化Chromedriver"></a>3.初始化Chromedriver</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Chrome(executable_path=<span class="string">"path\to\chromedriver.exe"</span>, chrome_options=options)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/25/2017-06-25-Python 动态网页图片爬取/#more" rel="contents">
+            <a class="btn" href="/2017/06/25/2017-06-25-Python 模拟登陆/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1018,6 +1022,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2017/06/25/2017-06-25-Python 动态网页图片爬取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/25/2017-06-25-Python 动态网页图片爬取/" itemprop="url">Python 动态网页图片爬取</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T00:00:00+08:00">
+                2017-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Python-动态网页图片爬取"><a href="#Python-动态网页图片爬取" class="headerlink" title="Python 动态网页图片爬取"></a>Python 动态网页图片爬取</h2><p>环境准备<br>anaconda 4.2.9<br>PyCharm 2017.1.4<br>pip install selenium</p>
+<h3 id="1-图片存储地址"><a href="#1-图片存储地址" class="headerlink" title="1.图片存储地址"></a>1.图片存储地址</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index = <span class="number">1</span></span><br><span class="line">imgPath = <span class="string">r"D:\img\baidu"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(imgPath):</span><br><span class="line">    os.mkdir(imgPath)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化driver环境"><a href="#2-初始化driver环境" class="headerlink" title="2.初始化driver环境"></a>2.初始化driver环境</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chromedriver = <span class="string">"G:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe"</span></span><br><span class="line">os.environ[<span class="string">"webdriver.chrome.driver"</span>] = chromedriver</span><br><span class="line">driver = webdriver.Chrome(chromedriver)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/25/2017-06-25-Python 动态网页图片爬取/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2017/06/25/2017-06-25-Python 3Dimage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,190 +1329,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/25/2017-06-25-Python 3Dimage/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2017/06/25/2017-06-25-Python 模拟登陆/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/25/2017-06-25-Python 模拟登陆/" itemprop="url">Python模拟登陆</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T00:00:00+08:00">
-                2017-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Python模拟登陆"><a href="#Python模拟登陆" class="headerlink" title="Python模拟登陆"></a>Python模拟登陆</h2><p>anaconda 4.2.9<br>PyCharm 2017.1.4<br>Chrome 57</p>
-<p>环境准备<br>chromedriver 2.28<br>（此处的驱动需要根据Chrome的版本安装对应的Chromedriver版本）<br>（可以不写入系统path  再driver初始化时指定路径即可）<br>pip install selenium</p>
-<h3 id="1-导入包"><a href="#1-导入包" class="headerlink" title="1.导入包"></a>1.导入包</h3><p>代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-初始化ChromeOptions-用于取消Chrome提示错误"><a href="#2-初始化ChromeOptions-用于取消Chrome提示错误" class="headerlink" title="2.初始化ChromeOptions 用于取消Chrome提示错误"></a>2.初始化ChromeOptions 用于取消Chrome提示错误</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options = webdriver.ChromeOptions()</span><br><span class="line">options.add_experimental_option(<span class="string">"excludeSwitches"</span>, [<span class="string">"ignore-certificate-errors"</span>])</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-初始化Chromedriver"><a href="#3-初始化Chromedriver" class="headerlink" title="3.初始化Chromedriver"></a>3.初始化Chromedriver</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Chrome(executable_path=<span class="string">"path\to\chromedriver.exe"</span>, chrome_options=options)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/25/2017-06-25-Python 模拟登陆/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2208,6 +2208,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
