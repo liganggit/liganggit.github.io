@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/Windows程序兼容助手/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/TensorFlow基础 tensorbaord/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -320,7 +320,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/Windows程序兼容助手/" itemprop="url">windows程序兼容助手</a></h1>
+                <a class="post-title-link" href="/2018/03/13/TensorFlow基础 tensorbaord/" itemprop="url">TensorFlow基础 tensorbaord</a></h1>
         
 
         <div class="post-meta">
@@ -355,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
+                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow基础</span>
                   </a>
                 </span>
 
@@ -424,13 +424,10 @@
 
       
         
-          <h2 id="windows下安装程序遇到的问题"><a href="#windows下安装程序遇到的问题" class="headerlink" title="windows下安装程序遇到的问题"></a>windows下安装程序遇到的问题</h2><pre><code>    Windows上有一个很奇怪的一个现象，一个exe只要你的名字里面带了setup\install之类的，
-打开exe后立即退出就会弹出下面的窗口：</code></pre><p><img src="../images/801174356016.png" alt="image"></p>
-<pre><code>解决方法：
-    在main函数入口处调用下面的函数，将当前exe写入Windows的“注册表白名单”中去，关闭时Windows就不会弹出兼容助手了。</code></pre>
+          <h2 id="TensorFlow基础-tensorbaord"><a href="#TensorFlow基础-tensorbaord" class="headerlink" title="TensorFlow基础 tensorbaord"></a>TensorFlow基础 tensorbaord</h2><p>python:3.x</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/Windows程序兼容助手/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/TensorFlow基础 tensorbaord/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -481,7 +478,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/CEF 接通 js 调用 C++/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/H5检测断网/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -500,7 +497,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/CEF 接通 js 调用 C++/" itemprop="url">CEF 接通 js 调用 C++</a></h1>
+                <a class="post-title-link" href="/2018/03/13/H5检测断网/" itemprop="url">H5检测断网</a></h1>
         
 
         <div class="post-meta">
@@ -535,8 +532,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cef/" itemprop="url" rel="index">
-                    <span itemprop="name">cef</span>
+                  <a href="/categories/H5/" itemprop="url" rel="index">
+                    <span itemprop="name">H5</span>
                   </a>
                 </span>
 
@@ -604,187 +601,12 @@
 
       
         
-          <h2 id="CEF-接通-js-调用-C"><a href="#CEF-接通-js-调用-C" class="headerlink" title="CEF 接通 js 调用 C++"></a>CEF 接通 js 调用 C++</h2><h3 id="需要在cef-reander进程下进行绑定。"><a href="#需要在cef-reander进程下进行绑定。" class="headerlink" title="需要在cef reander进程下进行绑定。"></a>需要在cef reander进程下进行绑定。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> jsCallCppFunction[] = <span class="string">"myCppFunction"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V8Handler</span> :</span> <span class="keyword">public</span> CefV8Handler &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	V8Handler() &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">Execute</span><span class="params">(<span class="keyword">const</span> CefString&amp; name,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt; object,</span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">const</span> CefV8ValueList&amp; arguments,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt;&amp; retval,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefString&amp; exception)</span> OVERRIDE </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (name == jsCallCppFunction) </span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (arguments.size() == <span class="number">1</span> &amp;&amp; arguments[<span class="number">0</span>]-&gt;IsBool()) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">bool</span> value = arguments[<span class="number">0</span>]-&gt;GetBoolValue();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	IMPLEMENT_REFCOUNTING(V8Handler);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Must match the value in client_handler.cc.</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> kFocusedNodeChangedMessage[] = <span class="string">"ClientRenderer.FocusedNodeChanged"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientRenderDelegate</span> :</span> <span class="keyword">public</span> ClientAppRenderer::Delegate &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  ClientRenderDelegate()</span><br><span class="line">    : last_node_is_editable_(<span class="literal">false</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnContextCreated</span><span class="params">(CefRefPtr&lt;ClientAppRenderer&gt; app,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefBrowser&gt; browser,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefFrame&gt; frame,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefV8Context&gt; context)</span> OVERRIDE </span>&#123;</span><br><span class="line">	CefRefPtr&lt;CefV8Value&gt; object = context-&gt;GetGlobal();</span><br><span class="line">	CefRefPtr&lt;CefV8Handler&gt; handler = <span class="keyword">new</span> V8Handler();</span><br><span class="line">	object-&gt;SetValue(jsCallCppFunction, CefV8Value::CreateFunction(jsCallCppFunction, handler), V8_PROPERTY_ATTRIBUTE_READONLY);</span><br><span class="line">    message_router_-&gt;OnContextCreated(browser,  frame, context);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure>
+          <h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (navigator.onLine) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'online'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'offline'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种做法有个缺陷就是  虚拟机网卡<br>onLine 说的意思是网卡有没有活动，不是单单指互联网连接正常不，所以本地网络出问题时，如果虚拟机网卡正常则onLine 也是true。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/CEF 接通 js 调用 C++/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/JS与AS相互调用function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/JS与AS相互调用function/" itemprop="url">JS与AS相互调用function</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS-AS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS AS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="JS与AS相互调用function"><a href="#JS与AS相互调用function" class="headerlink" title="JS与AS相互调用function"></a>JS与AS相互调用function</h2><h3 id="AS代码注册js调用接口"><a href="#AS代码注册js调用接口" class="headerlink" title="AS代码注册js调用接口"></a>AS代码注册js调用接口</h3><figure class="highlight as"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> flash.external.ExternalInterface;</span></span><br><span class="line">	ExternalInterface.addCallback(<span class="string">"playerPause"</span>, <span class="keyword">this</span>.playerPause); </span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">playerPause</span><span class="params">()</span> : void </span>&#123;</span><br><span class="line">		_hlsStreamProvider.pause(<span class="keyword">new</span> ClipEvent(ClipEventType.PAUSE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/JS与AS相互调用function/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/H5检测断网/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -962,6 +784,183 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/13/防火墙对于127.0.0.1地址的不进行拦截/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/CEF 接通 js 调用 C++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/CEF 接通 js 调用 C++/" itemprop="url">CEF 接通 js 调用 C++</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/cef/" itemprop="url" rel="index">
+                    <span itemprop="name">cef</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="CEF-接通-js-调用-C"><a href="#CEF-接通-js-调用-C" class="headerlink" title="CEF 接通 js 调用 C++"></a>CEF 接通 js 调用 C++</h2><h3 id="需要在cef-reander进程下进行绑定。"><a href="#需要在cef-reander进程下进行绑定。" class="headerlink" title="需要在cef reander进程下进行绑定。"></a>需要在cef reander进程下进行绑定。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> jsCallCppFunction[] = <span class="string">"myCppFunction"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V8Handler</span> :</span> <span class="keyword">public</span> CefV8Handler &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	V8Handler() &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">Execute</span><span class="params">(<span class="keyword">const</span> CefString&amp; name,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt; object,</span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">const</span> CefV8ValueList&amp; arguments,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt;&amp; retval,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefString&amp; exception)</span> OVERRIDE </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (name == jsCallCppFunction) </span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (arguments.size() == <span class="number">1</span> &amp;&amp; arguments[<span class="number">0</span>]-&gt;IsBool()) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">bool</span> value = arguments[<span class="number">0</span>]-&gt;GetBoolValue();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	IMPLEMENT_REFCOUNTING(V8Handler);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Must match the value in client_handler.cc.</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> kFocusedNodeChangedMessage[] = <span class="string">"ClientRenderer.FocusedNodeChanged"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientRenderDelegate</span> :</span> <span class="keyword">public</span> ClientAppRenderer::Delegate &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  ClientRenderDelegate()</span><br><span class="line">    : last_node_is_editable_(<span class="literal">false</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnContextCreated</span><span class="params">(CefRefPtr&lt;ClientAppRenderer&gt; app,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefBrowser&gt; browser,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefFrame&gt; frame,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefV8Context&gt; context)</span> OVERRIDE </span>&#123;</span><br><span class="line">	CefRefPtr&lt;CefV8Value&gt; object = context-&gt;GetGlobal();</span><br><span class="line">	CefRefPtr&lt;CefV8Handler&gt; handler = <span class="keyword">new</span> V8Handler();</span><br><span class="line">	object-&gt;SetValue(jsCallCppFunction, CefV8Value::CreateFunction(jsCallCppFunction, handler), V8_PROPERTY_ATTRIBUTE_READONLY);</span><br><span class="line">    message_router_-&gt;OnContextCreated(browser,  frame, context);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/CEF 接通 js 调用 C++/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1546,365 +1545,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/TensorFlow a+b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/TensorFlow a+b/" itemprop="url">TensorFlow基础 a+b</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          TensorFlow基础 a+bpython: 3.x
-1234567891011import tensorflow as tfa = tf.constant(2)  '''常量a'''b = tf.constant(3)  '''常量b''''''TensorFlow打开一个session'''w
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/TensorFlow a+b/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/hexo/" itemprop="url">hexo博客制作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><pre><code>自己是个懒人，对于写博客、写文档是很排斥的。
-一直觉得与其有写文档的时间，不如出去打球、打游戏、或者看书听歌学技术。但这都是自己找的所谓的借口而已，写文档有些文档的好。
-写文档做记录，可以将之前的学习、技术、想法做整理，有一个加深记忆、融会贯通的过程。也方便之前学过的东西信手拈来，不会造成明明搞过却讲不出来的尴尬局面。</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/hexo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/QT  QWebView 模拟html button点击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2035,6 +1675,368 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/13/QT  QWebView 模拟html button点击/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/TensorFlow基础 tensorbaord graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/TensorFlow基础 tensorbaord graph/" itemprop="url">TensorFlow基础 tensorbaord graph</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TensorFlow基础-tensorbaord-graph"><a href="#TensorFlow基础-tensorbaord-graph" class="headerlink" title="TensorFlow基础 tensorbaord graph"></a>TensorFlow基础 tensorbaord graph</h2><p>python: 3.x</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/TensorFlow基础 tensorbaord graph/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/TeamTalk即时通讯开源库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/TeamTalk即时通讯开源库/" itemprop="url">TeamTalk即时通讯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/即时通讯/" itemprop="url" rel="index">
+                    <span itemprop="name">即时通讯</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TeamTalk即时通讯"><a href="#TeamTalk即时通讯" class="headerlink" title="TeamTalk即时通讯"></a>TeamTalk即时通讯</h2><pre><code>QQ、微信、米聊都是IM即时通讯的比较著名的聊天工具。TeamTalk是蘑菇街开源的即时通讯开源库。
+
+TTServer(TeamTalk服务器端)主要包含了以下几种服务器:
+LoginServer (C++): 登录服务器，分配一个负载小的MsgServer给客户端使用
+MsgServer (C++): 消息服务器，提供客户端大部分信令处理功能，包括私人聊天、群组聊天等
+RouteServer (C++): 路由服务器，为登录在不同MsgServer的用户提供消息转发功能
+FileServer (C++): 文件服务器，提供客户端之间得文件传输服务，支持在线以及离线文件传输
+MsfsServer (C++): 图片存储服务器，提供头像，图片传输中的图片存储服务
+DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务，屏蔽其他服务器与mysql与redis的直接交互</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/TeamTalk即时通讯开源库/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
