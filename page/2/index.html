@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 placeholder/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -320,7 +320,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 placeholder/" itemprop="url">TensorFlow基础 placeholder</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/" itemprop="url">TensorFlow基础 matrix</a></h1>
         
 
         <div class="post-meta">
@@ -424,11 +424,11 @@
 
       
         
-          <h2 id="TensorFlow基础-placeholder"><a href="#TensorFlow基础-placeholder" class="headerlink" title="TensorFlow基础 placeholder"></a>TensorFlow基础 placeholder</h2><p>python:3.x</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''定义一个占位符，指定类型'''</span></span><br><span class="line">input1 = tf.placeholder(tf.float32)</span><br><span class="line">input2 = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="string">'''使用占位符进行乘法操作'''</span></span><br><span class="line">output = tf.multiply(input1, input2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line"><span class="string">'''给乘法操作填入数据，指定占位符以及值'''</span></span><br><span class="line">	print(sess.run(output, feed_dict=&#123;input1: [<span class="number">7.</span>], input2: [<span class="number">3.</span>]&#125;))</span><br></pre></td></tr></table></figure>
+          <h2 id="TensorFlow基础-matrix-矩阵"><a href="#TensorFlow基础-matrix-矩阵" class="headerlink" title="TensorFlow基础 matrix 矩阵"></a>TensorFlow基础 matrix 矩阵</h2><p>python:3.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个水平的一维向量[3,3]'''</span></span><br><span class="line">matrix1 = tf.constant([[<span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个垂直的一维向量[2,2]'''</span></span><br><span class="line">matrix2 = tf.constant([[<span class="number">2</span>], [<span class="number">2</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''定义一个矩阵乘法'''</span></span><br><span class="line">product = tf.matmul(matrix1, matrix2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	result = sess.run(product)</span><br><span class="line">	print(result)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 placeholder/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -836,7 +836,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 matrix/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -855,7 +855,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/" itemprop="url">TensorFlow基础 matrix</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/" itemprop="url">防火墙对于127.0.0.1地址的不进行拦截</a></h1>
         
 
         <div class="post-meta">
@@ -890,8 +890,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow基础</span>
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
                   </a>
                 </span>
 
@@ -959,188 +959,10 @@
 
       
         
-          <h2 id="TensorFlow基础-matrix-矩阵"><a href="#TensorFlow基础-matrix-矩阵" class="headerlink" title="TensorFlow基础 matrix 矩阵"></a>TensorFlow基础 matrix 矩阵</h2><p>python:3.x</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个水平的一维向量[3,3]'''</span></span><br><span class="line">matrix1 = tf.constant([[<span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个垂直的一维向量[2,2]'''</span></span><br><span class="line">matrix2 = tf.constant([[<span class="number">2</span>], [<span class="number">2</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''定义一个矩阵乘法'''</span></span><br><span class="line">product = tf.matmul(matrix1, matrix2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	result = sess.run(product)</span><br><span class="line">	print(result)</span><br></pre></td></tr></table></figure>
+          <h2 id="防火墙对于127-0-0-1地址的不进行拦截"><a href="#防火墙对于127-0-0-1地址的不进行拦截" class="headerlink" title="防火墙对于127.0.0.1地址的不进行拦截"></a>防火墙对于127.0.0.1地址的不进行拦截</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// INADDR_ANY                  0.0.0.0任何地址</span></span><br><span class="line"><span class="comment">// INADDR_LOOPBACK      127.0.0.1    </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用回环地址进行本地TCP/IP通信，防火墙不会进行拦截。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"wsock32.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    WORD wVersionRequested;</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">    wVersionRequested = MAKEWORD(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    err = WSAStartup(wVersionRequested, &amp;wsaData);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (LOBYTE(wsaData.wVersion) != <span class="number">2</span> ||</span><br><span class="line">        HIBYTE(wsaData.wVersion) != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        WSACleanup();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SOCKET sockSrv = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    SOCKADDR_IN sockaddr;</span><br><span class="line">    sockaddr.sin_addr.S_un.S_addr = htonl(INADDR_LOOPBACK);</span><br><span class="line">    sockaddr.sin_family = AF_INET;</span><br><span class="line">    sockaddr.sin_port = htons(<span class="number">8006</span>);</span><br><span class="line">    bind(sockSrv, (SOCKADDR*)&amp;sockaddr, <span class="keyword">sizeof</span>(SOCKADDR));</span><br><span class="line">    listen(sockSrv, <span class="number">5</span>);</span><br><span class="line">    SOCKADDR_IN addrClient;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="keyword">sizeof</span>(SOCKADDR);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        SOCKET sockConn = accept(sockSrv, (SOCKADDR*)&amp;addrClient, &amp;len);</span><br><span class="line">        <span class="keyword">char</span> SendBuf[<span class="number">100</span>];</span><br><span class="line">        send(sockConn, SendBuf, <span class="built_in">sprintf</span>(SendBuf,<span class="string">"Welcome"</span>) + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">char</span> recvBuf[<span class="number">100</span>];</span><br><span class="line">        recv(sockConn, recvBuf, <span class="number">100</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, recvBuf);</span><br><span class="line">        closesocket(sockConn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"wsock32.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    WORD wVersionRequested;</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">    wVersionRequested = MAKEWORD(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    err = WSAStartup(wVersionRequested, &amp;wsaData);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (LOBYTE(wsaData.wVersion) != <span class="number">2</span> ||</span><br><span class="line">        HIBYTE(wsaData.wVersion) != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        WSACleanup();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SOCKET sockClient = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    SOCKADDR_IN sockaddr;</span><br><span class="line">    sockaddr.sin_addr.S_un.S_addr = inet_addr(<span class="string">"127.0.0.1"</span>);<span class="comment">//INADDR_LOOPBACK;</span></span><br><span class="line">    sockaddr.sin_family = AF_INET;</span><br><span class="line">    sockaddr.sin_port = htons(<span class="number">8006</span>);</span><br><span class="line">    connect(sockClient, (SOCKADDR*)&amp;sockaddr, <span class="keyword">sizeof</span>(SOCKADDR));</span><br><span class="line">    <span class="keyword">char</span> recvBuf[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;, sendBuf[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    recv(sockClient, recvBuf, <span class="number">100</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, recvBuf);</span><br><span class="line">    send(sockClient, sendBuf, <span class="built_in">sprintf</span>(sendBuf, <span class="string">"thanks,i'm client"</span>) + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    closesocket(sockClient);</span><br><span class="line">    WSACleanup();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-CEF 接通 js 调用 C++/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-CEF 接通 js 调用 C++/" itemprop="url">CEF 接通 js 调用 C++</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cef/" itemprop="url" rel="index">
-                    <span itemprop="name">cef</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="CEF-接通-js-调用-C"><a href="#CEF-接通-js-调用-C" class="headerlink" title="CEF 接通 js 调用 C++"></a>CEF 接通 js 调用 C++</h2><h3 id="需要在cef-reander进程下进行绑定。"><a href="#需要在cef-reander进程下进行绑定。" class="headerlink" title="需要在cef reander进程下进行绑定。"></a>需要在cef reander进程下进行绑定。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> jsCallCppFunction[] = <span class="string">"myCppFunction"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V8Handler</span> :</span> <span class="keyword">public</span> CefV8Handler &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	V8Handler() &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">Execute</span><span class="params">(<span class="keyword">const</span> CefString&amp; name,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt; object,</span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">const</span> CefV8ValueList&amp; arguments,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefRefPtr&lt;CefV8Value&gt;&amp; retval,</span></span></span><br><span class="line"><span class="function"><span class="params">		CefString&amp; exception)</span> OVERRIDE </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (name == jsCallCppFunction) </span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (arguments.size() == <span class="number">1</span> &amp;&amp; arguments[<span class="number">0</span>]-&gt;IsBool()) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">bool</span> value = arguments[<span class="number">0</span>]-&gt;GetBoolValue();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	IMPLEMENT_REFCOUNTING(V8Handler);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Must match the value in client_handler.cc.</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> kFocusedNodeChangedMessage[] = <span class="string">"ClientRenderer.FocusedNodeChanged"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientRenderDelegate</span> :</span> <span class="keyword">public</span> ClientAppRenderer::Delegate &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  ClientRenderDelegate()</span><br><span class="line">    : last_node_is_editable_(<span class="literal">false</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnContextCreated</span><span class="params">(CefRefPtr&lt;ClientAppRenderer&gt; app,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefBrowser&gt; browser,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefFrame&gt; frame,</span></span></span><br><span class="line"><span class="function"><span class="params">                                CefRefPtr&lt;CefV8Context&gt; context)</span> OVERRIDE </span>&#123;</span><br><span class="line">	CefRefPtr&lt;CefV8Value&gt; object = context-&gt;GetGlobal();</span><br><span class="line">	CefRefPtr&lt;CefV8Handler&gt; handler = <span class="keyword">new</span> V8Handler();</span><br><span class="line">	object-&gt;SetValue(jsCallCppFunction, CefV8Value::CreateFunction(jsCallCppFunction, handler), V8_PROPERTY_ATTRIBUTE_READONLY);</span><br><span class="line">    message_router_-&gt;OnContextCreated(browser,  frame, context);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-CEF 接通 js 调用 C++/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1548,6 +1370,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-QT  QWebView 模拟html button点击/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-QT  QWebView 模拟html button点击/" itemprop="url">QT  QWebView 模拟html button点击</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/QT/" itemprop="url" rel="index">
+                    <span itemprop="name">QT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          啥话不说，直接上代码。使用的是QT QWebElement的evaluateJavaScript
+123QWebElement speakch = ui.resultContentWebView-&gt;page()-&gt;mainFrame()-&gt;findFirstElement("#ch
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-QT  QWebView 模拟html button点击/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TeamTalk即时通讯开源库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1733,7 +1735,7 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow a+b/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord train/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -1752,7 +1754,7 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow a+b/" itemprop="url">TensorFlow基础 a+b</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord train/" itemprop="url">TensorFlow基础 tensorbaord train</a></h1>
         
 
         <div class="post-meta">
@@ -1856,13 +1858,10 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
 
       
         
-          
-          TensorFlow基础 a+bpython: 3.x
-1234567891011import tensorflow as tfa = tf.constant(2)  '''常量a'''b = tf.constant(3)  '''常量b''''''TensorFlow打开一个session'''w
-          ...
+          <h2 id="TensorFlow基础-tensorbaord-train"><a href="#TensorFlow基础-tensorbaord-train" class="headerlink" title="TensorFlow基础 tensorbaord train"></a>TensorFlow基础 tensorbaord train</h2><p>python: 3.x</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow a+b/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord train/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1913,7 +1912,7 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-hexo/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -1932,7 +1931,7 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-hexo/" itemprop="url">hexo博客制作</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/" itemprop="url">TensorFlow基础 tensorbaord graph</a></h1>
         
 
         <div class="post-meta">
@@ -1967,8 +1966,8 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
+                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow基础</span>
                   </a>
                 </span>
 
@@ -2036,12 +2035,10 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
 
       
         
-          <h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><pre><code>自己是个懒人，对于写博客、写文档是很排斥的。
-一直觉得与其有写文档的时间，不如出去打球、打游戏、或者看书听歌学技术。但这都是自己找的所谓的借口而已，写文档有些文档的好。
-写文档做记录，可以将之前的学习、技术、想法做整理，有一个加深记忆、融会贯通的过程。也方便之前学过的东西信手拈来，不会造成明明搞过却讲不出来的尴尬局面。</code></pre>
+          <h2 id="TensorFlow基础-tensorbaord-graph"><a href="#TensorFlow基础-tensorbaord-graph" class="headerlink" title="TensorFlow基础 tensorbaord graph"></a>TensorFlow基础 tensorbaord graph</h2><p>python: 3.x</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-hexo/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2214,26 +2211,6 @@ DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务�
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
 
 
 
