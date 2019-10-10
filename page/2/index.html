@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 layer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/" itemprop="url">TensorFlow基础 tensorbaord graph</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 layer/" itemprop="url">TensorFlow基础 layer</a></h1>
         
 
         <div class="post-meta">
@@ -372,6 +372,8 @@
           
 
           
+
+          
             <div class="post-wordcount">
               
                 
@@ -420,10 +422,740 @@
 
       
         
-          <h2 id="TensorFlow基础-tensorbaord-graph"><a href="#TensorFlow基础-tensorbaord-graph" class="headerlink" title="TensorFlow基础 tensorbaord graph"></a>TensorFlow基础 tensorbaord graph</h2><p>python: 3.x</p>
+          <h2 id="TensorFlow基础-layer"><a href="#TensorFlow基础-layer" class="headerlink" title="TensorFlow基础 layer"></a>TensorFlow基础 layer</h2><pre><code>神经网络的理解：神经网络其实是好多层网络构成，每一层网络有很多个神经元节点。每一层神经元都与相邻层的神经元相连接。从输入层到输出层的过程中，上一层的神经元所携带的值经过一个计算传递给下一层的神经元。计算过程就是一元一次方程:y = x * w + b</code></pre><p>python:3.x</p>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>一元二次函数的训练以及损失计算过程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"></span><br><span class="line"><span class="string">'''定义网络层'''</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    网络层的定义其实就是一个一元一次方程:y = x * w + b的过程。通过x 和神经元之间链接的权重以及误差计算出下一层神经元的值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    y = x * Weights + biases</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    activation_function: 激活函数，激活函数是用来引入一些非线性因素来模拟输入的非线性变化，构造输入的复杂性。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs, in_size, out_size, activation_function=None)</span>:</span></span><br><span class="line">	Weights = tf.Variable(tf.random_normal([in_size, out_size]))</span><br><span class="line">	biases = tf.Variable(tf.zeros([<span class="number">1</span>, out_size]) + <span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">	Weights = tf.cast(Weights, tf.float64)</span><br><span class="line">	biases = tf.cast(biases, tf.float64)</span><br><span class="line"></span><br><span class="line">	Wx_plus_b = tf.matmul(inputs, Weights) + biases</span><br><span class="line">	<span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">		outputs = Wx_plus_b</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		outputs = activation_function(Wx_plus_b)</span><br><span class="line">	<span class="keyword">return</span> outputs</span><br><span class="line"></span><br><span class="line"><span class="string">'''准备x数据'''</span></span><br><span class="line">x_data = np.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">300</span>)[:, np.newaxis]</span><br><span class="line"><span class="string">'''准备噪声数据'''</span></span><br><span class="line">noise = np.random.normal(<span class="number">0</span>, <span class="number">0.05</span>, x_data.shape)</span><br><span class="line"><span class="string">'''y = x * x 构造y数据，并将噪声数据添加进去'''</span></span><br><span class="line">y_data = np.square(x_data) - <span class="number">0.5</span> + noise</span><br><span class="line"></span><br><span class="line">xs = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>])</span><br><span class="line">ys = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造输入层 激活函数指定为tf.nn.relu'''</span></span><br><span class="line">l1 = add_layer(x_data, <span class="number">1</span>, <span class="number">10</span>, activation_function=tf.nn.relu)</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造输出层'''</span></span><br><span class="line">prediction = add_layer(l1, <span class="number">10</span>, <span class="number">1</span>, activation_function=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'''定义损失函数 平方差'''</span></span><br><span class="line">loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">'''优化器为梯度下降算法，学习率指定为0.1'''</span></span><br><span class="line">train_step = tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.initialize_all_variables()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="string">'''循环10000次'''</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">        <span class="string">'''给训练函数填充数据'''</span></span><br><span class="line">		sess.run(train_step, feed_dict=&#123;xs: x_data, ys: y_data&#125;)</span><br><span class="line">		<span class="keyword">if</span> i % <span class="number">100</span>:</span><br><span class="line">            <span class="string">'''计算损失'''</span></span><br><span class="line">			print(sess.run(loss, feed_dict=&#123;xs: x_data, ys: y_data&#125;))</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 tensorbaord graph/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 layer/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 Variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 Variable/" itemprop="url">TensorFlow基础 Variable</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TensorFlow基础-Variable"><a href="#TensorFlow基础-Variable" class="headerlink" title="TensorFlow基础 Variable"></a>TensorFlow基础 Variable</h2><p>python:3.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个变量 counter'''</span></span><br><span class="line">state = tf.Variable(<span class="number">0</span>, name=<span class="string">'counter'</span>)</span><br><span class="line"><span class="string">'''创建一个常量 '''</span></span><br><span class="line">one = tf.constant(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造一个加法操作'''</span></span><br><span class="line">new_value = tf.add(state, one)</span><br><span class="line"><span class="string">'''构造一个赋值操作'''</span></span><br><span class="line">update = tf.assign(state, new_value)</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造一个初始化所有变量操作'''</span></span><br><span class="line">init = tf.initialize_all_variables()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line"><span class="string">'''执行初始化所有变量'''</span></span><br><span class="line">	sess.run(init)</span><br><span class="line">	<span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">        <span class="string">'''执行赋值操作，赋值操作中又包含了加法操作 类似于给一个数加上一个数字'''</span></span><br><span class="line">		sess.run(update)</span><br><span class="line">		print(sess.run(state))</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 Variable/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow helloworld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow helloworld/" itemprop="url">TensorFlow基础 helloworld</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TensorFlow基础-helloworld"><a href="#TensorFlow基础-helloworld" class="headerlink" title="TensorFlow基础 helloworld"></a>TensorFlow基础 helloworld</h2><p>python: 3.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''导入TensorFlow库'''</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">'''创建hello 常量字符串'''</span></span><br><span class="line">hello = tf.constant(<span class="string">'Hello, TensorFlow!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''创建session回话 输出hello'''</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow helloworld/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/" itemprop="url">开源流媒体平台框架 EasyDarwin</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒体-c-Android-IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">流媒体 c++ Android IOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="国人的开源精神"><a href="#国人的开源精神" class="headerlink" title="国人的开源精神"></a>国人的开源精神</h2><pre><code>入门后端半年多了，要学的技术太多太多。想着西安铺开面，拓展一下知识面。直播火热的时候，看到了EasyDarwin，这是国人开源的流媒体平台框架。框架中从服务端、客户端都有涉及。推流拉流等。
+
+大赞国人开源精神！</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TeamTalk即时通讯开源库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liganggit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-TeamTalk即时通讯开源库/" itemprop="url">TeamTalk即时通讯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/即时通讯/" itemprop="url" rel="index">
+                    <span itemprop="name">即时通讯</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                   字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                   分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TeamTalk即时通讯"><a href="#TeamTalk即时通讯" class="headerlink" title="TeamTalk即时通讯"></a>TeamTalk即时通讯</h2><pre><code>QQ、微信、米聊都是IM即时通讯的比较著名的聊天工具。TeamTalk是蘑菇街开源的即时通讯开源库。
+
+TTServer(TeamTalk服务器端)主要包含了以下几种服务器:
+LoginServer (C++): 登录服务器，分配一个负载小的MsgServer给客户端使用
+MsgServer (C++): 消息服务器，提供客户端大部分信令处理功能，包括私人聊天、群组聊天等
+RouteServer (C++): 路由服务器，为登录在不同MsgServer的用户提供消息转发功能
+FileServer (C++): 文件服务器，提供客户端之间得文件传输服务，支持在线以及离线文件传输
+MsfsServer (C++): 图片存储服务器，提供头像，图片传输中的图片存储服务
+DBProxy (C++): 数据库代理服务器，提供mysql以及redis的访问服务，屏蔽其他服务器与mysql与redis的直接交互</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-TeamTalk即时通讯开源库/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -549,6 +1281,8 @@
           
 
           
+
+          
             <div class="post-wordcount">
               
                 
@@ -601,185 +1335,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/13/2018-03-13-CEF 接通 js 调用 C++/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-H5检测断网/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-H5检测断网/" itemprop="url">H5检测断网</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/H5/" itemprop="url" rel="index">
-                    <span itemprop="name">H5</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (navigator.onLine) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'online'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'offline'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种做法有个缺陷就是  虚拟机网卡<br>onLine 说的意思是网卡有没有活动，不是单单指互联网连接正常不，所以本地网络出问题时，如果虚拟机网卡正常则onLine 也是true。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-H5检测断网/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -900,6 +1455,8 @@
           
 
           
+          
+
           
 
           
@@ -1082,6 +1639,8 @@
           
 
           
+
+          
             <div class="post-wordcount">
               
                 
@@ -1187,7 +1746,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 placeholder/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -1206,7 +1765,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 placeholder/" itemprop="url">TensorFlow基础 placeholder</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-hexo/" itemprop="url">hexo博客制作</a></h1>
         
 
         <div class="post-meta">
@@ -1241,8 +1800,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow基础</span>
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
                   </a>
                 </span>
 
@@ -1257,6 +1816,8 @@
           
 
           
+          
+
           
 
           
@@ -1310,11 +1871,12 @@
 
       
         
-          <h2 id="TensorFlow基础-placeholder"><a href="#TensorFlow基础-placeholder" class="headerlink" title="TensorFlow基础 placeholder"></a>TensorFlow基础 placeholder</h2><p>python:3.x</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''定义一个占位符，指定类型'''</span></span><br><span class="line">input1 = tf.placeholder(tf.float32)</span><br><span class="line">input2 = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="string">'''使用占位符进行乘法操作'''</span></span><br><span class="line">output = tf.multiply(input1, input2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line"><span class="string">'''给乘法操作填入数据，指定占位符以及值'''</span></span><br><span class="line">	print(sess.run(output, feed_dict=&#123;input1: [<span class="number">7.</span>], input2: [<span class="number">3.</span>]&#125;))</span><br></pre></td></tr></table></figure>
+          <h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><pre><code>自己是个懒人，对于写博客、写文档是很排斥的。
+一直觉得与其有写文档的时间，不如出去打球、打游戏、或者看书听歌学技术。但这都是自己找的所谓的借口而已，写文档有些文档的好。
+写文档做记录，可以将之前的学习、技术、想法做整理，有一个加深记忆、融会贯通的过程。也方便之前学过的东西信手拈来，不会造成明明搞过却讲不出来的尴尬局面。</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 placeholder/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-hexo/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1365,7 +1927,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 matrix/">
+    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-Windows程序兼容助手/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liganggit">
@@ -1384,7 +1946,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/" itemprop="url">TensorFlow基础 matrix</a></h1>
+                <a class="post-title-link" href="/2018/03/13/2018-03-13-Windows程序兼容助手/" itemprop="url">windows程序兼容助手</a></h1>
         
 
         <div class="post-meta">
@@ -1419,8 +1981,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow基础</span>
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
                   </a>
                 </span>
 
@@ -1435,6 +1997,8 @@
           
 
           
+          
+
           
 
           
@@ -1488,546 +2052,13 @@
 
       
         
-          <h2 id="TensorFlow基础-matrix-矩阵"><a href="#TensorFlow基础-matrix-矩阵" class="headerlink" title="TensorFlow基础 matrix 矩阵"></a>TensorFlow基础 matrix 矩阵</h2><p>python:3.x</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个水平的一维向量[3,3]'''</span></span><br><span class="line">matrix1 = tf.constant([[<span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"></span><br><span class="line"><span class="string">'''创建一个垂直的一维向量[2,2]'''</span></span><br><span class="line">matrix2 = tf.constant([[<span class="number">2</span>], [<span class="number">2</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''定义一个矩阵乘法'''</span></span><br><span class="line">product = tf.matmul(matrix1, matrix2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	result = sess.run(product)</span><br><span class="line">	print(result)</span><br></pre></td></tr></table></figure>
+          <h2 id="windows下安装程序遇到的问题"><a href="#windows下安装程序遇到的问题" class="headerlink" title="windows下安装程序遇到的问题"></a>windows下安装程序遇到的问题</h2><pre><code>    Windows上有一个很奇怪的一个现象，一个exe只要你的名字里面带了setup\install之类的，
+打开exe后立即退出就会弹出下面的窗口：</code></pre><p><img src="../images/801174356016.png" alt="image"></p>
+<pre><code>解决方法：
+    在main函数入口处调用下面的函数，将当前exe写入Windows的“注册表白名单”中去，关闭时Windows就不会弹出兼容助手了。</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 matrix/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-TensorFlow基础 layer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-TensorFlow基础 layer/" itemprop="url">TensorFlow基础 layer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow基础/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="TensorFlow基础-layer"><a href="#TensorFlow基础-layer" class="headerlink" title="TensorFlow基础 layer"></a>TensorFlow基础 layer</h2><pre><code>神经网络的理解：神经网络其实是好多层网络构成，每一层网络有很多个神经元节点。每一层神经元都与相邻层的神经元相连接。从输入层到输出层的过程中，上一层的神经元所携带的值经过一个计算传递给下一层的神经元。计算过程就是一元一次方程:y = x * w + b</code></pre><p>python:3.x</p>
-<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>一元二次函数的训练以及损失计算过程</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"></span><br><span class="line"><span class="string">'''定义网络层'''</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    网络层的定义其实就是一个一元一次方程:y = x * w + b的过程。通过x 和神经元之间链接的权重以及误差计算出下一层神经元的值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    y = x * Weights + biases</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    activation_function: 激活函数，激活函数是用来引入一些非线性因素来模拟输入的非线性变化，构造输入的复杂性。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs, in_size, out_size, activation_function=None)</span>:</span></span><br><span class="line">	Weights = tf.Variable(tf.random_normal([in_size, out_size]))</span><br><span class="line">	biases = tf.Variable(tf.zeros([<span class="number">1</span>, out_size]) + <span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">	Weights = tf.cast(Weights, tf.float64)</span><br><span class="line">	biases = tf.cast(biases, tf.float64)</span><br><span class="line"></span><br><span class="line">	Wx_plus_b = tf.matmul(inputs, Weights) + biases</span><br><span class="line">	<span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">		outputs = Wx_plus_b</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		outputs = activation_function(Wx_plus_b)</span><br><span class="line">	<span class="keyword">return</span> outputs</span><br><span class="line"></span><br><span class="line"><span class="string">'''准备x数据'''</span></span><br><span class="line">x_data = np.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">300</span>)[:, np.newaxis]</span><br><span class="line"><span class="string">'''准备噪声数据'''</span></span><br><span class="line">noise = np.random.normal(<span class="number">0</span>, <span class="number">0.05</span>, x_data.shape)</span><br><span class="line"><span class="string">'''y = x * x 构造y数据，并将噪声数据添加进去'''</span></span><br><span class="line">y_data = np.square(x_data) - <span class="number">0.5</span> + noise</span><br><span class="line"></span><br><span class="line">xs = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>])</span><br><span class="line">ys = tf.placeholder(tf.float64, [<span class="literal">None</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造输入层 激活函数指定为tf.nn.relu'''</span></span><br><span class="line">l1 = add_layer(x_data, <span class="number">1</span>, <span class="number">10</span>, activation_function=tf.nn.relu)</span><br><span class="line"></span><br><span class="line"><span class="string">'''构造输出层'''</span></span><br><span class="line">prediction = add_layer(l1, <span class="number">10</span>, <span class="number">1</span>, activation_function=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'''定义损失函数 平方差'''</span></span><br><span class="line">loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">'''优化器为梯度下降算法，学习率指定为0.1'''</span></span><br><span class="line">train_step = tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.initialize_all_variables()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="string">'''循环10000次'''</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">        <span class="string">'''给训练函数填充数据'''</span></span><br><span class="line">		sess.run(train_step, feed_dict=&#123;xs: x_data, ys: y_data&#125;)</span><br><span class="line">		<span class="keyword">if</span> i % <span class="number">100</span>:</span><br><span class="line">            <span class="string">'''计算损失'''</span></span><br><span class="line">			print(sess.run(loss, feed_dict=&#123;xs: x_data, ys: y_data&#125;))</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-TensorFlow基础 layer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/" itemprop="url">防火墙对于127.0.0.1地址的不进行拦截</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="防火墙对于127-0-0-1地址的不进行拦截"><a href="#防火墙对于127-0-0-1地址的不进行拦截" class="headerlink" title="防火墙对于127.0.0.1地址的不进行拦截"></a>防火墙对于127.0.0.1地址的不进行拦截</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// INADDR_ANY                  0.0.0.0任何地址</span></span><br><span class="line"><span class="comment">// INADDR_LOOPBACK      127.0.0.1    </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用回环地址进行本地TCP/IP通信，防火墙不会进行拦截。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"wsock32.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    WORD wVersionRequested;</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">    wVersionRequested = MAKEWORD(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    err = WSAStartup(wVersionRequested, &amp;wsaData);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (LOBYTE(wsaData.wVersion) != <span class="number">2</span> ||</span><br><span class="line">        HIBYTE(wsaData.wVersion) != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        WSACleanup();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SOCKET sockSrv = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    SOCKADDR_IN sockaddr;</span><br><span class="line">    sockaddr.sin_addr.S_un.S_addr = htonl(INADDR_LOOPBACK);</span><br><span class="line">    sockaddr.sin_family = AF_INET;</span><br><span class="line">    sockaddr.sin_port = htons(<span class="number">8006</span>);</span><br><span class="line">    bind(sockSrv, (SOCKADDR*)&amp;sockaddr, <span class="keyword">sizeof</span>(SOCKADDR));</span><br><span class="line">    listen(sockSrv, <span class="number">5</span>);</span><br><span class="line">    SOCKADDR_IN addrClient;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="keyword">sizeof</span>(SOCKADDR);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        SOCKET sockConn = accept(sockSrv, (SOCKADDR*)&amp;addrClient, &amp;len);</span><br><span class="line">        <span class="keyword">char</span> SendBuf[<span class="number">100</span>];</span><br><span class="line">        send(sockConn, SendBuf, <span class="built_in">sprintf</span>(SendBuf,<span class="string">"Welcome"</span>) + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">char</span> recvBuf[<span class="number">100</span>];</span><br><span class="line">        recv(sockConn, recvBuf, <span class="number">100</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, recvBuf);</span><br><span class="line">        closesocket(sockConn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"wsock32.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    WORD wVersionRequested;</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">    wVersionRequested = MAKEWORD(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    err = WSAStartup(wVersionRequested, &amp;wsaData);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (LOBYTE(wsaData.wVersion) != <span class="number">2</span> ||</span><br><span class="line">        HIBYTE(wsaData.wVersion) != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        WSACleanup();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SOCKET sockClient = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    SOCKADDR_IN sockaddr;</span><br><span class="line">    sockaddr.sin_addr.S_un.S_addr = inet_addr(<span class="string">"127.0.0.1"</span>);<span class="comment">//INADDR_LOOPBACK;</span></span><br><span class="line">    sockaddr.sin_family = AF_INET;</span><br><span class="line">    sockaddr.sin_port = htons(<span class="number">8006</span>);</span><br><span class="line">    connect(sockClient, (SOCKADDR*)&amp;sockaddr, <span class="keyword">sizeof</span>(SOCKADDR));</span><br><span class="line">    <span class="keyword">char</span> recvBuf[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;, sendBuf[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    recv(sockClient, recvBuf, <span class="number">100</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, recvBuf);</span><br><span class="line">    send(sockClient, sendBuf, <span class="built_in">sprintf</span>(sendBuf, <span class="string">"thanks,i'm client"</span>) + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    closesocket(sockClient);</span><br><span class="line">    WSACleanup();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-防火墙对于127.0.0.1地址的不进行拦截/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liganggit.github.io/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liganggit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/" itemprop="url">开源流媒体平台框架 EasyDarwin</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/流媒体-c-Android-IOS/" itemprop="url" rel="index">
-                    <span itemprop="name">流媒体 c++ Android IOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                   字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                   分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="国人的开源精神"><a href="#国人的开源精神" class="headerlink" title="国人的开源精神"></a>国人的开源精神</h2><pre><code>入门后端半年多了，要学的技术太多太多。想着西安铺开面，拓展一下知识面。直播火热的时候，看到了EasyDarwin，这是国人开源的流媒体平台框架。框架中从服务端、客户端都有涉及。推流拉流等。
-
-大赞国人开源精神！</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/2018-03-13-流媒体平台框架-EasyDarwin/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/2018-03-13-Windows程序兼容助手/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
